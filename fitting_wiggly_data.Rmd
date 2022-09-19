@@ -1,5 +1,5 @@
 ---
-title: "Why mgcv is awesome"
+title: "Fitting Wggly Data"
 author: "Chris Mainey"
 date: '`r Sys.Date()`'
 output:
@@ -78,9 +78,10 @@ label= c("1", "\u03B2", "\u03B1" ))
 <br><br><br>
 <br><br>
 
-# Why `mgcv` is awesome
+# Fitting Wiggly Data
+### Why `mgcv` is awesome
 
-<br><br><br>
+<br><br>
 <br><br>
 
 `r icons::icon_style(icons::fontawesome("envelope"))` c.mainey@nhs.net
@@ -259,6 +260,52 @@ ggplot(dt, aes(y=Y, x=X))+
         plot.title = element_text(size = 12, face="bold") )
 ```
 ---
+# Poly - what?
+
++ More complicated mathsy definitions than I can explain, first lets consider powers / orders:
+  + Squared ( $x^2$ or $x * x$)
+  + Cubed ( $x^3$ or $x * x * x$)
+
+
+--
+
+If we use these in regression, we can get something like:
+
+$$y = a_0 + a_1x + a_2x^2 + ... + a_nx_n$$
+
+
+--
+
+.pull-left[
+
+## Problems with polynomials
+
++ The oscillator wildly, particularly at edges:
++ Can give unrealistic fits outside of original range
++ Tend to overfit
+]
+
+.pull-right[
+<p style="text-align:center;"><a title="Nicoguaro, CC BY 4.0 &lt;https://creativecommons.org/licenses/by/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Runge_phenomenon.svg"><img width="300" alt="Runge phenomenon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Runge_phenomenon.svg/512px-Runge_phenomenon.svg.png"></a></p>
+]
+
+---
+
+# What if we could doe something more suitable?
+
+If we could define a set of functions we are happy with:
++ We could use coefficients to 'support' the fit
++ Could use penalties to restrict how much they flex
+
+
+<p style="text-align:center;font-weight:bold;"><img src="man/figures/basis_functions1.png" style="height:350px;" alt="Example of basis functions for fitting data"></p>
+
+.smaller[
+Figure taken from Noam Ross' GAMs in R course, CC-BY, https://github.com/noamross/gams-in-r-course
+]
+
+
+---
 
 # Splines
 
@@ -332,7 +379,7 @@ ggplot(dt, aes(y=Y, x=X))+
   geom_line(aes(y=sp3, x=X, col="10"), size=1.2)+
   scale_color_manual(values = c("#5DDEDE", "#FAD74B" ,"#FA6767"),
                      labels= factor(x=c("A", "B", "C"), levels=c("A", "B", "C"), labels=c("0.001", "1", "10"), ordered=TRUE)
-                     , name="Penalty (\u1D6FE)")+
+                     , name="Penalty (\u03B3)")+
   ggtitle("Varying smoothness penalty (20 knots)")+
     theme(legend.title = element_text(face="bold", size=09),
         legend.text = element_text(size=8),
@@ -394,6 +441,8 @@ Where:
 
 --
 
+<br>
+
 # mgcv: mixed gam computation vehicle
 
 + Prof. Simon Wood's package, pretty much the standard
@@ -406,9 +455,9 @@ library(mgcv)
 my_gam <- gam(Y ~ s(X, bs="cr"), data=dt)
 ```
 
-+ `s()` control smoothers
++ `s()` controls smoothers (and other options, `t`, `ti`)
 + `bs="cr"` telling it to use cubic regression spline ('basis')
-+ Default is 10 knots (`k=10` argument), but you can alter this
++ Default determined from data, but you can alter this e.g. (`k=10`)
 ---
 
 # Model Output:
@@ -497,10 +546,9 @@ https://noamross.github.io/gams-in-r-course/
 
 <br>
 
-.smaller[
 + HARRELL, F. E., JR. 2001. Regression Modeling Strategies, New York, Springer-Verlag New York.
 
 + HASTIE, T. & TIBSHIRANI, R. 1986. Generalized Additive Models. Statistical Science, 1, 297-310. 291
 
 + HASTIE, T., TIBSHIRANI, R. & FRIEDMAN, J. 2009. The Elements of Statistical Learning : Data Mining, Inference, and Prediction, New York, NETHERLANDS, Springer.
-]
+

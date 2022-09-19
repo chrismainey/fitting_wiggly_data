@@ -1,11 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Why mgcv is awesome
+# Fitting Wiggly Data - Using Generalised Additive Models (GAMs) to smooth data
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
-This is a quick repo for my lightning talk at BirminghamR on 21st
-January 2020.
+This is a repository for my talk to NHSE Analytical Academy 20/09/2022
+and NHS-R Community Conference 2022 on the pitfalls of using linear
+assumptions and why a bit of flexibility is often helpful. How to fit
+‘wiggly’ data using GAMs.

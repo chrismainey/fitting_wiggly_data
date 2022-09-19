@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Why mgcv is awesome</title>
+    <title>Fitting Wggly Data</title>
     <meta charset="utf-8" />
     <meta name="author" content="Chris Mainey" />
-    <meta name="date" content="2022-09-12" />
+    <meta name="date" content="2022-09-19" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -21,9 +21,10 @@
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
 &lt;br&gt;&lt;br&gt;
 
-# Why `mgcv` is awesome
+# Fitting Wiggly Data
+### Why `mgcv` is awesome
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;
 &lt;br&gt;&lt;br&gt;
 
 &lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"&gt;&lt;/path&gt;&lt;/svg&gt; c.mainey@nhs.net
@@ -52,14 +53,14 @@ Don't think about it too hard...😉  &lt;/p&gt;
 
 + Regression is a method for predicting a variable, `Y`, using another, `X`
 
-&lt;img src="Why_mgcv_is_awesome_files/figure-html/regression1-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="fitting_wiggly_data_files/figure-html/regression1-1.png" width="864" style="display: block; margin: auto;" /&gt;
 ---
 
 # Equation of a straight line (1)
 
 `$$y= \alpha + \beta x + \epsilon$$`
 
-&lt;img src="Why_mgcv_is_awesome_files/figure-html/regression2-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="fitting_wiggly_data_files/figure-html/regression2-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 
 
@@ -70,36 +71,82 @@ Don't think about it too hard...😉  &lt;/p&gt;
 
 `$$y= 2 + 1.5 x + \epsilon$$`
 
-&lt;img src="Why_mgcv_is_awesome_files/figure-html/regression3-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="fitting_wiggly_data_files/figure-html/regression3-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
 # What about nonlinear data? (1)
 
-&lt;img src="Why_mgcv_is_awesome_files/figure-html/sig-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="fitting_wiggly_data_files/figure-html/sig-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
 # What about nonlinear data? (2)
 
-&lt;img src="Why_mgcv_is_awesome_files/figure-html/cats-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="fitting_wiggly_data_files/figure-html/cats-1.png" width="864" style="display: block; margin: auto;" /&gt;
 ---
 
 # What about nonlinear data? (3)
 
-&lt;img src="Why_mgcv_is_awesome_files/figure-html/cats3-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="fitting_wiggly_data_files/figure-html/cats3-1.png" width="864" style="display: block; margin: auto;" /&gt;
 ---
 
 # What about nonlinear data? (4)
 
-&lt;img src="Why_mgcv_is_awesome_files/figure-html/cats4-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="fitting_wiggly_data_files/figure-html/cats4-1.png" width="864" style="display: block; margin: auto;" /&gt;
 ---
 
 # What about nonlinear data? (5)
 
-&lt;img src="Why_mgcv_is_awesome_files/figure-html/cats5-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="fitting_wiggly_data_files/figure-html/cats5-1.png" width="864" style="display: block; margin: auto;" /&gt;
+---
+# Poly - what?
+
++ More complicated mathsy definitions than I can explain, first lets consider powers / orders:
+  + Squared ( `\(x^2\)` or `\(x * x\)`)
+  + Cubed ( `\(x^3\)` or `\(x * x * x\)`)
+
+
+--
+
+If we use these in regression, we can get something like:
+
+`$$y = a_0 + a_1x + a_2x^2 + ... + a_nx_n$$`
+
+
+--
+
+.pull-left[
+
+## Problems with polynomials
+
++ The oscillator wildly, particularly at edges:
++ Can give unrealistic fits outside of original range
++ Tend to overfit
+]
+
+.pull-right[
+&lt;p style="text-align:center;"&gt;&lt;a title="Nicoguaro, CC BY 4.0 &amp;lt;https://creativecommons.org/licenses/by/4.0&amp;gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Runge_phenomenon.svg"&gt;&lt;img width="300" alt="Runge phenomenon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Runge_phenomenon.svg/512px-Runge_phenomenon.svg.png"&gt;&lt;/a&gt;&lt;/p&gt;
+]
+
+---
+
+# What if we could doe something more suitable?
+
+If we could define a set of functions we are happy with:
++ We could use coefficients to 'support' the fit
++ Could use penalties to restrict how much they flex
+
+
+&lt;p style="text-align:center;font-weight:bold;"&gt;&lt;img src="man/figures/basis_functions1.png" style="height:350px;" alt="Example of basis functions for fitting data"&gt;&lt;/p&gt;
+
+.smaller[
+Figure taken from Noam Ross' GAMs in R course, CC-BY, https://github.com/noamross/gams-in-r-course
+]
+
+
 ---
 
 # Splines
@@ -107,7 +154,7 @@ Don't think about it too hard...😉  &lt;/p&gt;
 + Smooth, piece-wise polynomials, like a flexible strip for drawing curves.
 + 'Knot points' between each section
 
-&lt;img src="Why_mgcv_is_awesome_files/figure-html/gam1-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="fitting_wiggly_data_files/figure-html/gam1-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -116,11 +163,11 @@ Don't think about it too hard...😉  &lt;/p&gt;
 Can be controlled by number of knots `\((k)\)`, or by a penalty `\(\gamma\)`.
 
 .pull-left[
-&lt;img src="Why_mgcv_is_awesome_files/figure-html/knots2-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="fitting_wiggly_data_files/figure-html/knots2-1.png" width="432" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
-&lt;img src="Why_mgcv_is_awesome_files/figure-html/penalty-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="fitting_wiggly_data_files/figure-html/penalty-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -175,6 +222,8 @@ Where:
 
 --
 
+&lt;br&gt;
+
 # mgcv: mixed gam computation vehicle
 
 + Prof. Simon Wood's package, pretty much the standard
@@ -188,9 +237,9 @@ library(mgcv)
 my_gam &lt;- gam(Y ~ s(X, bs="cr"), data=dt)
 ```
 
-+ `s()` control smoothers
++ `s()` controls smoothers (and other options, `t`, `ti`)
 + `bs="cr"` telling it to use cubic regression spline ('basis')
-+ Default is 10 knots (`k=10` argument), but you can alter this
++ Default determined from data, but you can alter this e.g. (`k=10`)
 ---
 
 # Model Output:
@@ -256,7 +305,7 @@ gam.check(my_gam)
 gam.check(my_gam)
 ```
 
-&lt;img src="Why_mgcv_is_awesome_files/figure-html/gam3c-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="fitting_wiggly_data_files/figure-html/gam3c-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ```
 ## 
@@ -344,13 +393,12 @@ https://noamross.github.io/gams-in-r-course/
 
 &lt;br&gt;
 
-.smaller[
 + HARRELL, F. E., JR. 2001. Regression Modeling Strategies, New York, Springer-Verlag New York.
 
 + HASTIE, T. &amp; TIBSHIRANI, R. 1986. Generalized Additive Models. Statistical Science, 1, 297-310. 291
 
 + HASTIE, T., TIBSHIRANI, R. &amp; FRIEDMAN, J. 2009. The Elements of Statistical Learning : Data Mining, Inference, and Prediction, New York, NETHERLANDS, Springer.
-]
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
