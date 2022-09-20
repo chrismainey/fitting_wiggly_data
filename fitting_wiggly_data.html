@@ -4,7 +4,7 @@
     <title>Fitting Wggly Data</title>
     <meta charset="utf-8" />
     <meta name="author" content="Chris Mainey" />
-    <meta name="date" content="2022-09-19" />
+    <meta name="date" content="2022-09-20" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -124,6 +124,7 @@ If we use these in regression, we can get something like:
 
 + The oscillator wildly, particularly at edges:
 + Can give unrealistic fits outside of original range
++ [Runge's phenomenon](https://en.wikipedia.org/wiki/Runge%27s_phenomenon#:~:text=In%20the%20mathematical%20field%20of,set%20of%20equispaced%20interpolation%20points.)
 + Tend to overfit
 ]
 
@@ -150,6 +151,33 @@ Figure taken from Noam Ross' GAMs in R course, CC-BY, https://github.com/noamros
 ---
 
 # Splines
+
++ How do you (manually) draw a smooth curve?
+
+--
+
+.pull-left[
+
+
+### [Draftsman's spline](https://www.core77.com/posts/55368/When-Splines-Were-Physical-Objects) / ['flat spline'](https://en.wikipedia.org/wiki/Flat_spline)
+
++ Thin flexible strip that bends to curves
+
++ Held in place by weights ("ducks"), nails etc.
+
++ The tension element is important: spline flexes minimally
+
+]
+
+.pull-right[
+
+&lt;p style="text-align:center;"&gt;&lt;a title="Pearson Scott Foresman, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Spline_(PSF).png"&gt;&lt;img width="400" alt="Spline (PSF)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Spline_%28PSF%29.png/512px-Spline_%28PSF%29.png"&gt;&lt;/a&gt;&lt;/p&gt;
+
+]
+
+---
+
+# Mathematical splines
 
 + Smooth, piece-wise polynomials, like a flexible strip for drawing curves.
 + 'Knot points' between each section
@@ -345,6 +373,16 @@ anova(my_lm, my_gam)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
+```r
+AIC(my_lm, my_gam)
+```
+
+```
+##              df      AIC
+## my_lm  3.000000 2562.280
+## my_gam 8.087281 2460.085
+```
+
 --
 
 ## Yes, yes it is!
@@ -398,7 +436,6 @@ https://noamross.github.io/gams-in-r-course/
 + HASTIE, T. &amp; TIBSHIRANI, R. 1986. Generalized Additive Models. Statistical Science, 1, 297-310. 291
 
 + HASTIE, T., TIBSHIRANI, R. &amp; FRIEDMAN, J. 2009. The Elements of Statistical Learning : Data Mining, Inference, and Prediction, New York, NETHERLANDS, Springer.
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
