@@ -562,7 +562,7 @@ AIC(my_lm, my_gam)
 # References and Further reading:
 
 #### GitHub code: 
-https://github.com/chrismainey/Why_mgcv_is_awesome
+https://github.com/chrismainey/fitting_wiggly_data
 
 
 
