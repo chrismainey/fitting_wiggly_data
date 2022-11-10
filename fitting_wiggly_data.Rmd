@@ -84,7 +84,7 @@ label= c("1", "\u03B2", "\u03B1" ))
 <br><br>
 <br><br>
 
-`r icons::icon_style(icons::fontawesome("envelope"))` c.mainey@nhs.net
+`r icons::icon_style(icons::fontawesome("envelope"))` [c.mainey1@nhs.net](mailto:c.mainey1@nhs.net)
 
 `r icons::icon_style(icons::fontawesome("globe"))` [mainard.co.uk](https://www.mainard.co.uk)
 
@@ -96,7 +96,7 @@ label= c("1", "\u03B2", "\u03B1" ))
 
 .pull-right[
 
-<p style="text-align:center;font-weight:bold;"><img src="man/figures/download.png" style="height:550px;" alt="Picture of Michael Jackson's dance routine for the song 'Smooth Criminal', with the bad dad-joke: 'You've been hit by a smoothed residual'">
+<p style="text-align:center;font-weight:bold;"><img src="man/figures/download.png" style="height:550px;" alt="Picture of Michael Jackson's dance routine for the song 'Smooth Criminal', with the bad "dad-joke": 'You've been hit by a smoothed residual'">
 <br>
 Don't think about it too hard...`r emo::ji("wink")`  </p>
 
@@ -110,7 +110,7 @@ Don't think about it too hard...`r emo::ji("wink")`  </p>
 
 + Regression is a method for predicting a variable, `Y`, using another, `X`
 
-```{r regression1, echo=FALSE, message=FALSE, warning=FALSE}
+```{r regression1, echo=FALSE, message=FALSE, warning=FALSE, fig.alt="Two-dimensional scatterplot with a range of data points that show the two dimensions are correlated"}
 library(ggplot2)
 
 a<-ggplot(my_data, aes(x=X,y=Y))+
@@ -127,7 +127,7 @@ a
 
 $$y= \alpha + \beta x + \epsilon$$
 
-```{r regression2, echo=FALSE, message=FALSE, warning=FALSE}
+```{r regression2, echo=FALSE, message=FALSE, warning=FALSE, fig.alt="The same scatter plot from the last slide now has a line of best fit drawn, highlighting where it crosses the vertical axis called the intercept or alpha. For each unit of 1 on the horizontal axis, the vertical axis raises by and amount called a coefficient, or beta."}
 library(ggforce)
 a+geom_smooth(col="red", method="lm")+
   geom_polygon(aes(x=X, y=Y), col="goldenrod", fill=NA, linetype="dashed", size=1.2, data=dt2)+
@@ -145,7 +145,7 @@ a+geom_smooth(col="red", method="lm")+
 
 $$y= 2 + 1.5 x + \epsilon$$
 
-```{r regression3, echo=FALSE, message=FALSE, warning=FALSE}
+```{r regression3, echo=FALSE, message=FALSE, warning=FALSE, fig.alt="The same scatter plot from the last slide now has a line of best fit drawn, highlighting where it crosses the vertical axis called the intercept or alpha. For each unit of 1 on the horizontal axis, the vertical axis raises by and amount called a coefficient, or beta."}
 a+geom_smooth(col="red", method="lm")+
   geom_polygon(aes(x=X, y=Y), col="goldenrod", fill=NA, linetype="dashed", size=1.2, data=dt2)+
   geom_label(aes(x=X, y = Y, label=value), data=triangle)+
@@ -158,7 +158,7 @@ a+geom_smooth(col="red", method="lm")+
 
 # What about nonlinear data? (1)
 
-```{r sig, echo=FALSE, message=TRUE, warning=FALSE}
+```{r sig, echo=FALSE, message=TRUE, warning=FALSE, fig.alt="The same scatter plot from the first slide with no line of best fit"}
 ### Sigmoid function ### create a function to generate sigmoid pattern
 sigmoid <- function(x, lower_asymptote, carrying_capacity, growth_rate, time_max) {
   return(lower_asymptote + ((carrying_capacity - lower_asymptote)/(1 + exp(-growth_rate * 
@@ -187,7 +187,7 @@ ggplot(dt, aes(y=Y, x=X))+
 
 # What about nonlinear data? (2)
 
-```{r cats, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6.5}
+```{r cats, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6.5, fig.alt="The same scatter plot from the first slide with a straight line of best fit."}
 ggplot(dt, aes(y=Y, x=X))+
   geom_point(size=1.8, alpha=0.4)+
   geom_smooth(aes(col="A"), method = "lm",  se=FALSE, size=1.3)+
@@ -206,7 +206,7 @@ ggplot(dt, aes(y=Y, x=X))+
 
 # What about nonlinear data? (3)
 
-```{r cats3, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6.5}
+```{r cats3, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6.5, fig.alt="The same scatter plot from the first slide with boxes for 3 categories added."}
 ggplot(dt, aes(y=Y, x=X))+
   geom_point(size=1.8, alpha=0.4)+
   #geom_smooth(aes(col="A"), method = "lm",  se=FALSE, size=1.3)+
@@ -225,7 +225,7 @@ ggplot(dt, aes(y=Y, x=X))+
 
 # What about nonlinear data? (4)
 
-```{r cats4, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6.5}
+```{r cats4, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6.5, fig.alt="The same scatter plot from the first slide with with a smooth sigmoidal shape fitted to the points"}
 ggplot(dt, aes(y=Y, x=X))+
   geom_point(size=1.8, alpha=0.4)+
   #geom_smooth(aes(col="A"), method = "lm",  se=FALSE, size=1.3)+
@@ -244,7 +244,7 @@ ggplot(dt, aes(y=Y, x=X))+
 
 # What about nonlinear data? (5)
 
-```{r cats5, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6.5}
+```{r cats5, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6.5, fig.alt="The same scatter plot from the first slide with a straight line, categorical and the a smooth sigmoidal shapes fitted to the points."}
 ggplot(dt, aes(y=Y, x=X))+
   geom_point(size=1.8, alpha=0.4)+
   geom_smooth(aes(col="A"), method = "lm",  se=FALSE, size=1.3)+
@@ -280,9 +280,9 @@ $$y = a_0 + a_1x + a_2x^2 + ... + a_nx_n$$
 
 ## Problems with polynomials
 
-+ The oscillator wildly, particularly at edges:
-+ Can give unrealistic fits outside of original range
-+ [Runge's phenomenon](https://en.wikipedia.org/wiki/Runge%27s_phenomenon#:~:text=In%20the%20mathematical%20field%20of,set%20of%20equispaced%20interpolation%20points.)
++ Can oscillate wildly, particularly at edges:
+  + Can give unrealistic fits outside of original range
+  + [Runge's phenomenon](https://en.wikipedia.org/wiki/Runge%27s_phenomenon#:~:text=In%20the%20mathematical%20field%20of,set%20of%20equispaced%20interpolation%20points.)
 + Tend to overfit
 ]
 
@@ -292,7 +292,7 @@ $$y = a_0 + a_1x + a_2x^2 + ... + a_nx_n$$
 
 ---
 
-# What if we could doe something more suitable?
+# What if we could do something more suitable?
 
 If we could define a set of functions we are happy with:
 + We could use coefficients to 'support' the fit
@@ -340,7 +340,7 @@ Figure taken from Noam Ross' GAMs in R course, CC-BY, https://github.com/noamros
 + Smooth, piece-wise polynomials, like a flexible strip for drawing curves.
 + 'Knot points' between each section
 
-```{r gam1, echo=FALSE, message=FALSE, warning=FALSE}
+```{r gam1, echo=FALSE, message=FALSE, warning=FALSE, fig.alt="Scatter plot from earlier with a wiggly sigmoidal best fit line"}
 library(splines)
 ggplot(dt, aes(y=Y, x=X))+
   geom_point(size=1.5, alpha=0.4)+
@@ -354,7 +354,7 @@ ggplot(dt, aes(y=Y, x=X))+
 Can be controlled by number of knots $(k)$, or by a penalty $\gamma$.
 
 .pull-left[
-```{r knots2, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6}
+```{r knots2, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.alt="Scatter plot from earlier with a wiggly sigmoidal best fit lines for 2, 20 and 50 points"}
 library(viridis)
 library(mgcv)
 
@@ -386,7 +386,7 @@ ggplot(dt, aes(y=Y, x=X))+
 ]
 
 .pull-right[
-```{r penalty, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6}
+```{r penalty, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.alt="Scatter plot from earlier with a wiggly sigmoidal best fit lines for 20 knots but differing penalties 0.001, 1 and 10"}
 ########### Use gam sim for sigmoid and show difference in lambda ###############
 
 smsp<-gam(Y~s(X, bs="cr", k=20), data=dt, gamma=0.001)
@@ -435,12 +435,12 @@ $$y= \alpha + f(x) + \epsilon$$
 Or more formally, an example GAM might be (Wood, 2017):
 ]
 
-$$g(\mu i) = A_i \theta + f_1(x_1) + f_2(x_{2i}) + f3(x_{3i}, x_{4i}) + ...$$
+$$g(\mu_i) = A_i \theta + f_1(x_1) + f_2(x_{2i}) + f3(x_{3i}, x_{4i}) + ...$$
 <br>
 Where:
 
 .smaller[
-+ $\mu i \equiv E(Y _i)$, the expectation of Y]
++ $\mu_i \equiv \mathbb{E}(Y _i)$, the expectation of Y]
 
 --
 
@@ -461,8 +461,7 @@ Where:
 ---
 # What does that mean for me?
 
-+ Can build regression models with smoothers
-+ Suited to non-linear, or noisy data
++ Can build regression models with smoothers, particularly suited to non-linear, or noisy data
 
 + _Hastie (1985)_ used knot every point, _Wood (2017)_ uses reduced-rank version
 
@@ -480,6 +479,7 @@ Where:
 
 ```{r gam}
 library(mgcv)
+
 my_gam <- gam(Y ~ s(X, bs="cr"), data=dt)
 ```
 
@@ -501,7 +501,7 @@ summary(my_gam)
 gam.check(my_gam)
 ```
 
-```{r gam3a, echo=FALSE, fig.show= 'hide'}
+```{r gam3a, echo=FALSE}
 gam.check(my_gam)
 ```
 
@@ -512,7 +512,7 @@ gam.check(my_gam)
 gam.check(my_gam)
 ```
 
-```{r gam3c, echo=FALSE}
+```{r gam3c, echo=FALSE, fig.show= 'hide', fig.alt="Four diagnostic plots for models, examining fit against residuals"}
 gam.check(my_gam)
 ```
 
