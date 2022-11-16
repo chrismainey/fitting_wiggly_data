@@ -98,7 +98,7 @@ a, a > code {
 
 .footnote {
 
-  position: absolute;
+  position: relative;
   bottom: 3em;
   padding-right: 4em;
   font-size: 0.9em;
