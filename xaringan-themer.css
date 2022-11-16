@@ -92,7 +92,7 @@ a, a > code {
 .qr1 {
   position: absolute;
   bottom: 2em;
-  padding-left: 14em;
+  left: 14em;
   font-size: 0.9em;
 }
 
