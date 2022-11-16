@@ -85,12 +85,9 @@ label= c("1", "\u03B2", "\u03B1" ))
 <br><br>
 
 `r icons::icon_style(icons::fontawesome("envelope"))` [c.mainey1@nhs.net](mailto:c.mainey1@nhs.net)
-
 `r icons::icon_style(icons::fontawesome("globe"))` [mainard.co.uk](https://www.mainard.co.uk)
-
-`r icons::icon_style(icons::fontawesome("github"))` [github.com/chrismainey](https://github.com/chrismainey)
-
-`r icons::icon_style(icons::fontawesome("twitter"))` [twitter.com/chrismainey](https://twitter.com/chrismainey)
+`r icons::icon_style(icons::fontawesome("github"))` [chrismainey](https://github.com/chrismainey)
+`r icons::icon_style(icons::fontawesome("twitter"))` [chrismainey](witter.com/chrismainey)
 
 ]
 
@@ -103,6 +100,9 @@ Don't think about it too hard...`r emo::ji("wink")`  </p>
 
 ]
 
+.qr1[
+<img src="man/figures/qr1.png" style="height:150px;" alt="QR code https://chrismainey.github.io/fitting_wiggly_data/fitting_wiggly_data.html">
+]
 
 ---
 
@@ -260,34 +260,38 @@ ggplot(dt, aes(y=Y, x=X))+
         plot.title = element_text(size = 12, face="bold") )
 ```
 ---
+
+.pull-left[
+
 # Poly - what?
 
 + More complicated mathsy definitions than I can explain, first lets consider powers / orders:
+
   + Squared ( $x^2$ or $x * x$)
+
   + Cubed ( $x^3$ or $x * x * x$)
 
-
---
+<br><br>
 
 If we use these in regression, we can get something like:
 
 $$y = a_0 + a_1x + a_2x^2 + ... + a_nx_n$$
-
+]
 
 --
 
-.pull-left[
+.pull-right[
 
 ## Problems with polynomials
 
-+ Can oscillate wildly, particularly at edges:
-  + Can give unrealistic fits outside of original range
-  + [Runge's phenomenon](https://en.wikipedia.org/wiki/Runge%27s_phenomenon#:~:text=In%20the%20mathematical%20field%20of,set%20of%20equispaced%20interpolation%20points.)
-+ Tend to overfit
-]
++ Dodgy fit with increased complexity
 
-.pull-right[
-<p style="text-align:center;"><a title="Nicoguaro, CC BY 4.0 &lt;https://creativecommons.org/licenses/by/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Runge_phenomenon.svg"><img width="300" alt="Runge phenomenon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Runge_phenomenon.svg/512px-Runge_phenomenon.svg.png"></a></p>
++ Can oscillate wildly, particularly at edges:
+  + [Runge's phenomenon](https://en.wikipedia.org/wiki/Runge%27s_phenomenon#:~:text=In%20the%20mathematical%20field%20of,set%20of%20equispaced%20interpolation%20points.)
+
+
+<p style="text-align:center;"><a title="Nicoguaro, CC BY 4.0 &lt;https://creativecommons.org/licenses/by/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Runge_phenomenon.svg"><img width="400" alt="Runge phenomenon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Runge_phenomenon.svg/512px-Runge_phenomenon.svg.png"></a></p>
+
 ]
 
 ---
@@ -442,17 +446,11 @@ Where:
 .smaller[
 + $\mu_i \equiv \mathbb{E}(Y _i)$, the expectation of Y]
 
---
-
 .smaller[
 + $Yi \sim EF(\mu _i, \phi _i)$, $Yi$ is a response variable, distributed according to exponential family distribution with mean $\mu _i$ and shape parameter $\phi$.]
 
---
-
 .smaller[
 + $A_i$ is a row of the model matrix for any strictly parametric model components with $\theta$ the corresponding parameter vector.]
-
---
 
 .smaller[
 + $f_i$ are smooth functions of the covariates, $xk$, where $k$ is each function basis.]

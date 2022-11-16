@@ -89,6 +89,12 @@ a, a > code {
   text-align:center;
 }
 
+.qr1 {
+  position: absolute;
+  bottom: 2em;
+  padding-left: 14em;
+  font-size: 0.9em;
+}
 
 .footnote {
 
